@@ -45,9 +45,11 @@ bool Audio::AddSound(const string& name)
 bool Audio::PlaySound(const string& name)
 {
 	// check if sound exists, if not add sound
-	if (m_sounds.find(name) == m_sounds.end()) { if (!AddSound(name)); return false; }
+	if (m_sounds.find(name) == m_sounds.end()) 
+	{ if (!AddSound(name)) return false; }
 
 	m_audio->playSound(m_sounds[name], 0, false, nullptr);
+	return true;
 }
 
 //bool Audio::StopSound(const string& name)

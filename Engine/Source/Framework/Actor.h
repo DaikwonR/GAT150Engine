@@ -1,8 +1,8 @@
 #pragma once
-#include "Transform.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Transform.h"
 #include "Scene.h"
-#include "Audio.h"
-#include "Model.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Audio/Audio.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Model.h"
 
 #include <string>
 

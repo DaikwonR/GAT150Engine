@@ -1,6 +1,6 @@
 #pragma once
-#include "Vector2.h"
-#include "Transform.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Vector2.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Transform.h"
 #include "Color.h"
 #include "Renderer.h"
 

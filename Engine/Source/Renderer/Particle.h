@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector2.h"
-#include "Renderer.h"
-#include "Vector2.h"
+#include "../Math/Vector2.h"
+#include "../Renderer/Renderer.h"
+// #include "Vector2.h"
 
 using namespace std;
 

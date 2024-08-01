@@ -1,10 +1,10 @@
-#include "Engine.h"
+#include "../Source/Framework/Engine.h"
 
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 #include <ctime>
-
+#include <cassert>
 
 
 
@@ -12,25 +12,29 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	g_engine.Initialize();
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
+	engine->Initialize();
 
+
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << endl;
+	
 	// text->Create(g_engine.GetRenderer(), "Hello World", Color{ 1, 1, 1, 1 });
 
-	while (!g_engine.IsQuit())
+	while (!engine->IsQuit())
 	{
-		g_engine.Update();
+		engine->Update();
 		
-
-		g_engine.GetRenderer().SetColor(random(255), random(255), random(255), 0);
-		g_engine.GetRenderer().BeginFrame();
-
-		g_engine.GetPS().Draw(g_engine.GetRenderer());
-
-		g_engine.GetRenderer().EndFrame();
+		engine->GetRenderer().SetColor(0, 0, 0, 0);
+		engine->GetRenderer().BeginFrame();
+		
+		engine->GetPS().Draw(engine->GetRenderer());
+		
+		engine->GetRenderer().EndFrame();
 
 
 	}
 
-	g_engine.ShutDown();
+	engine->ShutDown();
 	return 0;
 }

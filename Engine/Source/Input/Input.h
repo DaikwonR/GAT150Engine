@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <array>
-#include "Vector2.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Vector2.h"
 
 using namespace std;
 

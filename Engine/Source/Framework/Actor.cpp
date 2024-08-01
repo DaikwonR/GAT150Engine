@@ -1,5 +1,5 @@
 #include "Actor.h"
-#include "Model.h"
+#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Model.h"
 
 void Actor::Update(float dt)
 {
