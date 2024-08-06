@@ -1,4 +1,6 @@
 #include "Font.h"
+
+
 #include <string>
 #include <iostream>
 
@@ -20,4 +22,15 @@ bool Font::Load(const std::string& name, int fontSize)
 	}
 
 	return true;
+}
+
+bool Font::Create(std::string name, ...)
+{
+	va_list args;
+	va_start(args, name);
+	int fontSize = va_arg(args, int);
+	va_end(args);
+	std::cout << fontSize << std::endl;
+
+	return Load(name, fontSize);
 }

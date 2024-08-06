@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{8d697bbf-6d4f-4b94-a8bb-e8df1467473b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Resources">
+      <UniqueIdentifier>{48b9753a-c742-4b29-9096-ba75f2be38d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Renderer\Color.h">
@@ -93,6 +96,18 @@
     <ClInclude Include="Source\Engine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Renderer\Texture.h">
+      <Filter>Source Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Resource.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\ResourceManager.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Singleton.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Renderer\Font.cpp">
@@ -139,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Texture.cpp">
+      <Filter>Source Files\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

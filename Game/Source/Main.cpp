@@ -1,4 +1,4 @@
-#include "../Source/Framework/Engine.h"
+#include "Engine.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -6,20 +6,29 @@
 #include <ctime>
 #include <cassert>
 
-
+void f()
+{
+	static int i = 5;
+	i++;
+	std::cout << i << std::endl;
+}
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
+	// f();
+
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
-
 
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << endl;
 	
-	// text->Create(g_engine.GetRenderer(), "Hello World", Color{ 1, 1, 1, 1 });
+	// create texture, using shared_ptr so texture can be shared
+	
+	res_t<Texture> texture = ResourceManager::instance().Get<Texture>("beast.png", engine->GetRenderer());
+	
 
 	while (!engine->IsQuit())
 	{
@@ -29,9 +38,10 @@ int main(int argc, char* argv[])
 		engine->GetRenderer().BeginFrame();
 		
 		engine->GetPS().Draw(engine->GetRenderer());
+
+		engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
 		
 		engine->GetRenderer().EndFrame();
-
 
 	}
 

@@ -1,32 +1,36 @@
 #pragma once
 
 // ** core **
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Core/EAssert.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Core/EFile.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Core/E_Time.h"
+#include "Core/EAssert.h"
+#include "Core/EFile.h"
+#include "Core/E_Time.h"
 
 // ** systems **
 // renderer
-
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Renderer.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Particle.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/ParticleSystem.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Model.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Text.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Font.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Color.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Particle.h"
+#include "Renderer/ParticleSystem.h"
+#include "Renderer/Model.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
+#include "Renderer/Color.h"
+#include "Renderer/Texture.h"
 
 // ** import **
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Input/Input.h"
-
-// ** audio **
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Audio/Audio.h"
+#include "Input/Input.h"
+			   
+// ** audio ** 
+#include "Audio/Audio.h"
 
 // ** math **
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Transform.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/MathUtils.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Vector2.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Math/Random.h"
+#include "Math/Transform.h"
+#include "Math/MathUtils.h"
+#include "Math/Vector2.h"
+#include "Math/Random.h"
+
+// ** resources **
+#include "../Source/Resources/Resource.h"
+#include "../Source/Resources/ResourceManager.h"
 
 
 #include <fmod.hpp>
