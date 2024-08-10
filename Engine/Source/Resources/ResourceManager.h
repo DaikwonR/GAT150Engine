@@ -15,8 +15,8 @@ public:
 
 	friend class Singleton;
 
-protected:
 	ResourceManager() = default;
+protected:
 
 private:
 	std::map<std::string, res_t<Resource>> m_resources;

@@ -4,6 +4,7 @@
 #include "Core/EAssert.h"
 #include "Core/EFile.h"
 #include "Core/E_Time.h"
+#include "Core/Json.h"
 
 // ** systems **
 // renderer
@@ -15,6 +16,12 @@
 #include "Renderer/Font.h"
 #include "Renderer/Color.h"
 #include "Renderer/Texture.h"
+
+// ** framework **
+#include "Framework/Actor.h"
+#include "Framework/Game.h"
+#include "Framework/Object.h"
+#include "Framework/Scene.h"
 
 // ** import **
 #include "Input/Input.h"
@@ -32,6 +39,10 @@
 #include "../Source/Resources/Resource.h"
 #include "../Source/Resources/ResourceManager.h"
 
+// ** components **
+#include "Components/Component.h"
+#include "Components/RenderComponent.h"
+#include "Components/TextureComponent.h"
 
 #include <fmod.hpp>
 #include <SDL.h>

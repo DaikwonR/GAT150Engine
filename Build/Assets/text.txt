@@ -1,0 +1,10 @@
+{
+	"name":"Panda",
+	"age":32,
+	"isHappy":false,
+	"position": 
+	[
+		5, 
+		10
+	]
+}

@@ -1,6 +1,6 @@
 #include "Scene.h"
 #include "Actor.h"
-#include "/NU/IntroToGame/GAT150Engine/Engine/Source/Renderer/Model.h"
+#include "Renderer/Model.h"
 
 #include <algorithm>
 
@@ -23,13 +23,13 @@ void Scene::Update(float dt)
 
 			Vector2 direction = actor1->GetTransform().position - actor2->GetTransform().position;
 			float distance = direction.Length();
-			float radius = actor1->m_model->GetRadius() + actor2->m_model->GetRadius();
+			// float radius = actor1->m_model->GetRadius() + actor2->m_model->GetRadius();
 
-			if (distance <= radius)
+			/*if (distance <= radius)
 			{
 				actor1->OnCollision(actor2.get());
 				actor2->OnCollision(actor1.get());
-			}
+			}*/
 		}
 	}
 }
