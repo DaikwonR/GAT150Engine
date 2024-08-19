@@ -15,11 +15,14 @@ bool Engine::Initialize()
 
     m_input->Initialize();
     m_audio->Initialize();
+    m_physics->Initialize();
     // m_audio->AddSound("skadoosh.wav");
 
     m_time = std::make_unique<Time>();
 
     m_particleSystem = std::make_unique<ParticleSystem>();
+
+    m_physics = std::make_unique<Physics>();
 
     return true;
 }
@@ -29,6 +32,7 @@ void Engine::ShutDown()
     m_renderer->ShutDown();
     m_input->ShutDown();
     m_audio->ShutDown();
+    m_physics->Shutdown();
 
     // display memory leaks
     _CrtMemDumpAllObjectsSince(NULL);
@@ -55,4 +59,6 @@ void Engine::Update()
     m_input->Update();
     m_audio->Update();
     m_particleSystem->Update(m_time->GetDeltaTime());
+    m_physics->Update(m_time->GetDeltaTime());
+
 }

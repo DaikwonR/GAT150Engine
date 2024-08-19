@@ -1,80 +1,71 @@
 #include "Engine.h"
+#include "Components/PlayerComponent.h"
 
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include <ctime>
-#include <cassert>
-#include <rapidjson/document.h>
-
-void f()
-{
-	static int i = 5;
-	i++;
-	std::cout << i << std::endl;
-}
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	// f();
+	Factory::Instance().Register<Actor>("Actor");
+	Factory::Instance().Register<TextureComponent>("TextureComponent");
+	Factory::Instance().Register<EnginePhysicsComponent>("EnginePhysicsComponent");
+	Factory::Instance().Register<PlayerComponent>("PlayerComponent");
+	Factory::Instance().Register<TextComponent>("TextComponent");
+
+
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
 
-	ResourceManager rm = ResourceManager();
 
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << endl;
 
-	std::string s;
-	File::ReadFile("text.txt", s);
-	cout << s;
+	// !! code not necessary, it just shows the contenst
+	// of the file !!
+	// std::string buffer;
+	// File::ReadFile("Scenes/scene.json", buffer);
+	// show the contents of the json file
+	// cout << buffer;
 
 	rapidjson::Document document;
-	Json::Load("text.txt", document);
+	Json::Load("Scenes/scene.json", document);
 
-	std::string name;
-	int age;
-	bool isHappy;
-
-	READ_DATA(document, name);
-	READ_DATA(document, age);
-	READ_DATA(document, isHappy);
-
-	std::cout << name << age << isHappy << std::endl;
-	
-	// create texture, using shared_ptr so texture can be shared
-	
-	
-	/*res_t<Texture> texture = ResourceManager::instance().Get<Texture>("beast.png", engine->GetRenderer());
-	res_t<Font> font = ResourceManager::instance().Get<Font>();
-	unique_ptr<Text> text = make_unique<Text>(font);
-	text->Create(engine->GetRenderer(), "Hello!", { 1,1,0,1 });*/
-	
-	Transform t{ {30, 30} };
-	unique_ptr<Actor> actor = make_unique<Actor>(t);
-	// unique_ptr<Actor> actor = make_unique<Actor>(t);
+	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
+	scene->Read(document);
+	scene->Initialize();
 
 	while (!engine->IsQuit())
 	{
+		// update
 		engine->Update();
+		scene->Update(engine->GetTime().GetDeltaTime());
 		
-		// engine->Update(engine->GetTime().GetDeltaTime());
+		auto* actor = scene->GetActor<Actor>("text");
+		if (actor)
+		{
+			actor->transform.scale = Math::Abs(Math::Sin(engine->GetTime().GetTime())) * 5;
+			actor->transform.rotation += 90 * engine->GetTime().GetDeltaTime();
+		}
 
+		// render
 		engine->GetRenderer().SetColor(0, 0, 0, 0);
 		engine->GetRenderer().BeginFrame();
-		// engine->GetRenderer().DrawTexture(texture.get(), randomf(800), randomf(600), randomf(360));
-		
-		engine->GetPS().Draw(engine->GetRenderer());
 
-		// engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
+		// draw
+		scene->Draw(engine->GetRenderer());
 		
+		// end frame
 		engine->GetRenderer().EndFrame();
 
 	}
 
+	scene->RemoveAll();
+	ResourceManager::Instance().Clear();
 	engine->ShutDown();
+
 	return 0;
 }

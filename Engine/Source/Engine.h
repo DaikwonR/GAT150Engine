@@ -4,7 +4,10 @@
 #include "Core/EAssert.h"
 #include "Core/EFile.h"
 #include "Core/E_Time.h"
+#include "Core/EString.h"
 #include "Core/Json.h"
+#include "Core/Singleton.h"
+#include "Core/Factory.h"
 
 // ** systems **
 // renderer
@@ -43,6 +46,12 @@
 #include "Components/Component.h"
 #include "Components/RenderComponent.h"
 #include "Components/TextureComponent.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextComponent.h"
+
+// ** physics **
+#include "Physics/Physics.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
@@ -71,7 +80,10 @@ public:
 
 	Time& GetTime() { return *m_time; }
 	
+	Physics& GetPhysics() { return *m_physics; }
+
 	bool IsQuit() { return quit; }
+
 private:
 	bool quit{ false };
 
@@ -82,6 +94,8 @@ private:
 	std::unique_ptr<Audio> m_audio;
 
 	std::unique_ptr<ParticleSystem> m_particleSystem;
+
+	std::unique_ptr<Physics> m_physics;
 
 	static Engine ms_engine;
 };

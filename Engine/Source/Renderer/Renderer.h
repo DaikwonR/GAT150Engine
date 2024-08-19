@@ -3,6 +3,7 @@
 #include <string>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <memory>
 
 #include "Texture.h"
 
@@ -33,7 +34,9 @@ public:
 
     friend class Text;
     friend class Texture;
-    void DrawTexture(Texture* texture, float x, float y, float angle = 0);
+
+    void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0);
+    void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
 
 protected:
 

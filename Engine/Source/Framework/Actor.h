@@ -1,19 +1,14 @@
 #pragma once
-
-#include "Object.h"
-#include "Components/Component.h"
 #include "Math/Transform.h"
-
-// #include "../Audio/Audio.h"
-// #include "../Renderer/Model.h"
+#include "Object.h"
 
 #include <string>
 #include <memory>
 #include <vector>
 
-class Model;
 class Renderer;
 class Scene;
+class Component;
 
 using namespace std;
 
@@ -21,10 +16,9 @@ class Actor : public Object
 {
 public:
 	Actor() = default;
-	Actor(const Transform& transform) : m_transform{ transform } {}
-	Actor(const Transform& transform, Model* model) : 
-		m_transform{ transform }
-	{}
+	Actor(const Transform& transform) : transform{ transform } {}
+
+	CLASS_DECLARATION(Actor);
 
 	void Initialize() override;
 	virtual void Update(float dt);
@@ -32,29 +26,48 @@ public:
 
 	void AddComponent(std::unique_ptr<Component> component);
 
-	void SetDamping(float damping) { m_damping = damping; }
-	void SetLifeSpan(float lifespan) { m_lifespan = lifespan; }
-
-	const Transform& GetTransform() { return m_transform; }
-
-	void SetTag(const string& tag) { m_tag = tag; }
-	const string GetTag() { return m_tag; }
-
-	virtual void OnCollision(Actor* actor) {};
-	float GetRadius() { return 0; }
+	template<typename T> T* GetComponent();
+	template<typename T> std::vector<T*> GetComponents();
 
 	friend class Scene;
 
+public:
+	string tag;
+	float lifespan = 0.0f;
+	bool destroyed = false;
+	Transform transform;
+	Scene* scene{ nullptr };
+
 protected:
-	string m_tag;
-	bool m_destroyed = false;
-	float m_lifespan = 0.0f;
 
-	Transform m_transform;
-	Vector2 m_velocity{ 0, 0};
-	float m_damping{ 0 };
+	std::vector<std::unique_ptr<Component>> components;
 
-	Scene* m_scene{ nullptr };
-
-	std::vector<std::unique_ptr<Component>> m_components;
 };
+
+
+
+template<typename T>
+inline T* Actor::GetComponent()
+{
+	for (auto& component : components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) return result;
+	}
+
+	return nullptr;
+}
+
+template<typename T>
+inline std::vector<T*> Actor::GetComponents()
+{
+	std::vector<T*> results;
+
+	for (auto& component : components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) results.push_back(result);
+	}
+
+	return results;
+}

@@ -1,57 +1,53 @@
-#include "Scene.h"
-#include "Actor.h"
-#include "Renderer/Model.h"
+#include "Engine.h"
 
 #include <algorithm>
 
+
+void Scene::Initialize()
+{
+	for (auto& actor : m_actors)
+	{
+		actor->Initialize();
+	}
+}
 
 void Scene::Update(float dt)
 {
 	for (auto& actor : m_actors)
 	{
-		actor->Update(dt);
-	}
-
-	std::erase_if(m_actors, [](auto& actor) { return actor->m_destroyed; });
-
-	// collision
-	for (auto& actor1 : m_actors)
-	{
-		for (auto& actor2 : m_actors)
+		if (actor->active)
 		{
-			if (actor1 == actor2 || (actor1->m_destroyed || actor2->m_destroyed)) continue;
+		actor->Update(dt);
 
-			Vector2 direction = actor1->GetTransform().position - actor2->GetTransform().position;
-			float distance = direction.Length();
-			// float radius = actor1->m_model->GetRadius() + actor2->m_model->GetRadius();
-
-			/*if (distance <= radius)
-			{
-				actor1->OnCollision(actor2.get());
-				actor2->OnCollision(actor1.get());
-			}*/
 		}
 	}
+
+	std::erase_if(m_actors, [](auto& actor) { return actor->destroyed; });
+
 }
 
 void Scene::Draw(Renderer& renderer)
 {
 	for (auto& actor : m_actors)
 	{
+		if (actor->active)
+		{
 		actor->Draw(renderer);
+
+		}
 	}
 
 }
 
 void Scene::AddActor(std::unique_ptr<Actor> actor)
 {
-	actor->m_scene = this;
+	actor->scene = this;
 	m_actors.push_back(std::move(actor));
 }
 
 void Scene::RemoveActor(std::unique_ptr<Actor> actor)
 {
-	actor->m_scene = this;
+	actor->scene = this;
 	m_actors.remove(std::move(actor));
 }
 
@@ -59,3 +55,24 @@ void Scene::RemoveAll()
 {
 	m_actors.clear();
 }
+
+void Scene::Read(const json_t& value)
+{
+	if (HAS_DATA(value, m_actors) && GET_DATA(value, m_actors).IsArray())
+	{
+		for (auto& actorValue : GET_DATA(value, m_actors).GetArray())
+		{
+			auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
+			actor->Read(actorValue);
+
+			AddActor(std::move(actor));
+		}
+
+	}
+}
+
+void Scene::Write(json_t& value)
+{
+	// 
+}
+
