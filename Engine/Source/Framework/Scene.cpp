@@ -1,7 +1,16 @@
 #include "Engine.h"
+#include "Actor.h"
+#include "Core/Factory.h"
+#include "Core/EAssert.h"
+#include "Components/CollisionComponent.h"
 
 #include <algorithm>
 
+
+Scene::Scene(const Scene& other)
+{
+	// ASSERT(false);
+}
 
 void Scene::Initialize()
 {
@@ -21,7 +30,31 @@ void Scene::Update(float dt)
 
 		}
 	}
+	// collision
+	for (auto& actor1 : m_actors)
+	{
+		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
+		if (!collision1) continue;
 
+		for (auto& actor2 : m_actors)
+		{
+			// Don't check with self
+			if (actor1 == actor2)continue;
+
+			CollisionComponent* collision2 = actor1->GetComponent<CollisionComponent>();
+			if (!collision1) continue;
+
+			if (collision1->CheckCollision(collision2))
+			{
+				std::cout << "SKADOOSH!\n";
+
+				if (actor1->OnCollisionEnter) actor1->OnCollisionEnter(actor2.get());
+				if (actor2->OnCollisionEnter) actor2->OnCollisionEnter(actor1.get());
+			}
+		}
+	}
+
+	// destroy
 	std::erase_if(m_actors, [](auto& actor) { return actor->destroyed; });
 
 }
@@ -39,9 +72,11 @@ void Scene::Draw(Renderer& renderer)
 
 }
 
-void Scene::AddActor(std::unique_ptr<Actor> actor)
+void Scene::AddActor(std::unique_ptr<Actor> actor, bool initialize)
 {
 	actor->scene = this;
+	if (initialize) actor->Initialize();
+
 	m_actors.push_back(std::move(actor));
 }
 
@@ -56,6 +91,8 @@ void Scene::RemoveAll()
 	m_actors.clear();
 }
 
+
+
 void Scene::Read(const json_t& value)
 {
 	if (HAS_DATA(value, m_actors) && GET_DATA(value, m_actors).IsArray())
@@ -65,7 +102,19 @@ void Scene::Read(const json_t& value)
 			auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
 			actor->Read(actorValue);
 
-			AddActor(std::move(actor));
+			bool prototype = false;
+			READ_DATA(actorValue, prototype);
+
+			if (prototype)
+			{
+				std::string name = actor->name;
+				Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+			}
+			else
+			{
+				AddActor(std::move(actor));
+
+			}
 		}
 
 	}

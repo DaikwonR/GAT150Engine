@@ -1,4 +1,9 @@
+#include "TextureComponent.h"
+#include "Renderer/Renderer.h"
+
 #include "Engine.h"
+
+FACTORY_REGISTER(TextureComponent)
 
 void TextureComponent::Initialize()
 {

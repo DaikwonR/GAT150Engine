@@ -5,16 +5,12 @@
 #include <cstdlib>
 #include <vector>
 
+
+
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Factory::Instance().Register<Actor>("Actor");
-	Factory::Instance().Register<TextureComponent>("TextureComponent");
-	Factory::Instance().Register<EnginePhysicsComponent>("EnginePhysicsComponent");
-	Factory::Instance().Register<PlayerComponent>("PlayerComponent");
-	Factory::Instance().Register<TextComponent>("TextComponent");
-
 
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
@@ -24,7 +20,7 @@ int main(int argc, char* argv[])
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << endl;
 
-	// !! code not necessary, it just shows the contenst
+	// !! code not necessary, it just shows the contents
 	// of the file !!
 	// std::string buffer;
 	// File::ReadFile("Scenes/scene.json", buffer);

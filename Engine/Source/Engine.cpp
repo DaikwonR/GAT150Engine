@@ -9,6 +9,7 @@ bool Engine::Initialize()
     m_renderer = std::make_unique<Renderer>();
     m_input = std::make_unique<Input>();
     m_audio = std::make_unique<Audio>();
+    m_physics = std::make_unique<Physics>();
 
     (*m_renderer).Initialize();
     m_renderer->CreateWindow("Game Engine", 800, 600);
@@ -22,7 +23,7 @@ bool Engine::Initialize()
 
     m_particleSystem = std::make_unique<ParticleSystem>();
 
-    m_physics = std::make_unique<Physics>();
+    
 
     return true;
 }

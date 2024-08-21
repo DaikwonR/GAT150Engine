@@ -1,9 +1,11 @@
 #include "PlayerComponent.h"
 #include "Engine.h"
 
+FACTORY_REGISTER(PlayerComponent)
+
 void PlayerComponent::Initialize()
 {
-
+	owner->OnCollisionEnter = std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1);
 }
 
 void PlayerComponent::Update(float dt)
@@ -15,6 +17,22 @@ void PlayerComponent::Update(float dt)
 	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_S)) dircetion.x = 1;
 
 	owner->GetComponent<PhysicsComponent>()->ApplyForce(dircetion * speed);
+
+	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_S))
+	{
+		auto rocket = Factory::Instance().Create<Actor>("rocket");
+		rocket->transform.position = owner->transform.position;
+		rocket->transform.rotation = owner->transform.rotation;
+		owner->scene->AddActor(std::move(rocket), true);
+
+		
+
+	}
+}
+
+void PlayerComponent::OnCollisionEnter(Actor* actor)
+{
+	// std::cout << "Player went bye bye!\n" << endl;
 }
 
 void PlayerComponent::Read(const json_t& value)

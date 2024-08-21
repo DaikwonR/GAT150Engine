@@ -1,10 +1,12 @@
 #pragma once
 #include "Math/Transform.h"
+#include "Components/Component.h"
 #include "Object.h"
 
 #include <string>
 #include <memory>
 #include <vector>
+#include <functional>
 
 class Renderer;
 class Scene;
@@ -17,12 +19,16 @@ class Actor : public Object
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : transform{ transform } {}
+	Actor(const Actor& other);
 
 	CLASS_DECLARATION(Actor);
+	CLASS_PROTOTYPE(Actor);
 
 	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
+
+	std::function<void(Actor*)> OnCollisionEnter;
 
 	void AddComponent(std::unique_ptr<Component> component);
 

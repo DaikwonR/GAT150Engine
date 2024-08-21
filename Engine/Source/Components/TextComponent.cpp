@@ -9,7 +9,7 @@
 
 void TextComponent::Initialize()
 {
-	if (!fontName.empty())
+	if (!m_text && !fontName.empty())
 	{
 		res_t<Font> font = ResourceManager::Instance().Get<Font>(fontName, fontSize);
 		m_text = std::make_unique<Text>(font);
@@ -40,6 +40,17 @@ void TextComponent::SetText(const std::string& text)
 		this->text = text;
 		textChanged = true;
 	}
+}
+
+TextComponent::TextComponent(const TextComponent& other)
+{
+	text = other.text;
+	fontName = other.fontName;
+	fontSize = other.fontSize;
+	color = other.color;
+
+	textChanged = true;
+	m_text = std::make_unique<Text>(*other.m_text.get());
 }
 
 void TextComponent::Read(const json_t& value)
