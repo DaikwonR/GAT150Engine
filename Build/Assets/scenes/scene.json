@@ -3,7 +3,7 @@
 		{
 			"name": "background",
 			"transform": {
-				"position": [ 0, 0 ],
+				"position": [ 400, 300 ],
 				"rotation": 0,
 				"scale": 2
 			},
@@ -11,20 +11,31 @@
 				{
 					"type": "TextureComponent",
 					"textureName": "textures/GNChosen.png"
+				}
+			]
+		},
+		{
+			"name": "player",
+			"transform": {
+				"position": [ 0, 0 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "textures/PlayerBattleCruiser.png"
 				},
 				{
-					"type": "EnginePhysicsComponent",
-					"velocity": [ 0, 0 ],
-					"damping": 0.5
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"gravityScale": 0,
+					"angularDamping": 0.85,
+					"size": [ 32, 32 ]
 				},
 				{
 					"type": "PlayerComponent",
 					"speed": 1500
-				},
-				{
-					"type": "CircleCollisionComponent",
-					"radius":  24
-
 				}
 			]
 		},
@@ -38,19 +49,29 @@
 			"components": [
 				{
 					"type": "TextureComponent",
-					"textureName": "textures/EnemyTorpedo Ship.png"
+					"textureName": "textures/EnemyTorpedoShip.png"
 				},
 				{
-					"type": "CircleCollisionComponent",
-					"radius": 24
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"gravityScale": 0,
+					"angularDamping": 0.85,
+					"size": [ 32, 32 ]
 
 				}
 			]
 		},
 		{
+			"name": "text",
+			"transform": {
+				"position": [ 660, 460 ],
+				"rotation": 90,
+				"scale": 2
+			},
 			"components": [
 				{
 					"type": "TextComponent",
+					"active": true,
 					"text": "Panda Supremacy",
 					"fontName": "fonts/youmurdererbb_reg.ttf",
 					"fontSize": 24,
@@ -69,21 +90,19 @@
 			"components": [
 				{
 					"type": "TextureComponent",
-					"textureName": "textures/rocket.piskel"
+					"textureName": "textures/Rocket.png"
 				},
 				{
-					"type": "EnginePhysicsComponent",
-					"velocity": [ 0, 0 ],
-					"damping": 0.0
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"gravityScale": 0,
+					"angularDamping": 0.0,
+					"isSensor": true,
+					"size": [ 32, 32 ]
 				},
 				{
 					"type": "RocketComponent",
 					"speed": 1500
-				},
-				{
-					"type": "CircleCollisionComponent",
-					"radius": 12
-
 				}
 			]
 		}

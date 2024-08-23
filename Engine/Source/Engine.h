@@ -38,6 +38,11 @@
 #include "Math/Vector2.h"
 #include "Math/Random.h"
 
+// ** event **
+#include "Event/Event.h"
+#include "Event/EventSystem.h"
+#include "Event/Observer.h"
+
 // ** resources **
 #include "../Source/Resources/Resource.h"
 #include "../Source/Resources/ResourceManager.h"

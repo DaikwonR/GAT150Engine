@@ -10,14 +10,12 @@ public:
 	CLASS_DECLARATION(TextComponent)
 	CLASS_PROTOTYPE(TextComponent)
 
-	// Inherited via RenderComponent
+	
 	void Initialize() override;
-
 	void Update(float dt) override;
-
 	void Draw(Renderer& renderer) override;
-
 	void SetText(const std::string& text);
+
 public:
 	std::string text;
 	std::string fontName;

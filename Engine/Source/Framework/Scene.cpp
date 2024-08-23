@@ -31,28 +31,28 @@ void Scene::Update(float dt)
 		}
 	}
 	// collision
-	for (auto& actor1 : m_actors)
-	{
-		CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
-		if (!collision1) continue;
+	//for (auto& actor1 : m_actors)
+	//{
+	//	CollisionComponent* collision1 = actor1->GetComponent<CollisionComponent>();
+	//	if (!collision1) continue;
 
-		for (auto& actor2 : m_actors)
-		{
-			// Don't check with self
-			if (actor1 == actor2)continue;
+	//	for (auto& actor2 : m_actors)
+	//	{
+	//		// Don't check with self
+	//		if (actor1 == actor2)continue;
 
-			CollisionComponent* collision2 = actor1->GetComponent<CollisionComponent>();
-			if (!collision1) continue;
+	//		CollisionComponent* collision2 = actor2->GetComponent<CollisionComponent>();
+	//		if (!collision2) continue;
 
-			if (collision1->CheckCollision(collision2))
-			{
-				std::cout << "SKADOOSH!\n";
+	//		if (collision1->CheckCollision(collision2))
+	//		{
+	//			std::cout << "SKADOOSH!\n";
 
-				if (actor1->OnCollisionEnter) actor1->OnCollisionEnter(actor2.get());
-				if (actor2->OnCollisionEnter) actor2->OnCollisionEnter(actor1.get());
-			}
-		}
-	}
+	//			if (actor1->OnCollisionEnter) actor1->OnCollisionEnter(actor2.get());
+	//			if (actor2->OnCollisionEnter) actor2->OnCollisionEnter(actor1.get());
+	//		}
+	//	}
+	//}
 
 	// destroy
 	std::erase_if(m_actors, [](auto& actor) { return actor->destroyed; });

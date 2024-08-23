@@ -1,24 +1,29 @@
 #include "Engine.h"
-#include "Components/PlayerComponent.h"
+#include "SpaceGame.h"
 
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-
-
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
 
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << endl;
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
 
+	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>(engine.get());
+	game->Initialize();
+	
+	//std::unique_ptr<TextComponent> text = std::make_unique<TextComponent>(engine.get());
+	//text->Initialize();
+	
 
-	File::SetFilePath("Assets");
-	std::cout << File::GetFilePath() << endl;
+#pragma region Json contents
 
 	// !! code not necessary, it just shows the contents
 	// of the file !!
@@ -26,40 +31,30 @@ int main(int argc, char* argv[])
 	// File::ReadFile("Scenes/scene.json", buffer);
 	// show the contents of the json file
 	// cout << buffer;
-
-	rapidjson::Document document;
-	Json::Load("Scenes/scene.json", document);
-
-	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
-	scene->Read(document);
-	scene->Initialize();
+#pragma endregion
 
 	while (!engine->IsQuit())
 	{
 		// update
 		engine->Update();
-		scene->Update(engine->GetTime().GetDeltaTime());
-		
-		auto* actor = scene->GetActor<Actor>("text");
-		if (actor)
-		{
-			actor->transform.scale = Math::Abs(Math::Sin(engine->GetTime().GetTime())) * 5;
-			actor->transform.rotation += 90 * engine->GetTime().GetDeltaTime();
-		}
+		game->Update(engine->GetTime().GetDeltaTime());
+		//text->Update(engine->GetTime().GetDeltaTime());
 
 		// render
 		engine->GetRenderer().SetColor(0, 0, 0, 0);
 		engine->GetRenderer().BeginFrame();
 
+		game->Draw(engine->GetRenderer());
+
 		// draw
-		scene->Draw(engine->GetRenderer());
+		//text->Draw(engine->GetRenderer());
 		
 		// end frame
 		engine->GetRenderer().EndFrame();
 
 	}
 
-	scene->RemoveAll();
+	game->Shutdown();
 	ResourceManager::Instance().Clear();
 	engine->ShutDown();
 

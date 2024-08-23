@@ -27,6 +27,9 @@
     <ClCompile Include="Source\Components\RocketComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SpaceGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\PlayerComponent.h">
@@ -34,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="Source\Components\RocketComponent.h">
       <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SpaceGame.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

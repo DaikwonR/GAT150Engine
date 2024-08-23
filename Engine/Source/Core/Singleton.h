@@ -5,6 +5,7 @@ template<typename T>
 class Singleton
 {
 public:
+	Singleton() = default;
 	Singleton(const Singleton& other) = delete;
 	Singleton& operator = (const Singleton& other) = delete;
 
@@ -15,5 +16,4 @@ public:
 	}
 
 protected:
-	Singleton() = default;
 };
