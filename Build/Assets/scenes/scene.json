@@ -35,7 +35,7 @@
 				},
 				{
 					"type": "PlayerComponent",
-					"speed": 1500
+					"speed": 75
 				}
 			]
 		},
@@ -71,7 +71,7 @@
 			"components": [
 				{
 					"type": "TextComponent",
-					"active": true,
+					"active": false,
 					"text": "Panda Supremacy",
 					"fontName": "fonts/youmurdererbb_reg.ttf",
 					"fontSize": 24,
@@ -100,10 +100,15 @@
 					"isSensor": true,
 					"size": [ 32, 32 ]
 				},
-				{
-					"type": "RocketComponent",
-					"speed": 1500
-				}
+        {
+          "type": "RocketComponent",
+          "speed": 1500
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "audio/cowbell.wav",
+          "playOnStart": true
+        }
 			]
 		}
 	]

@@ -20,7 +20,7 @@ public:
 	bool PlaySound(const string& name);
 	bool StopSound(const string& name);
 
-private:
+public:
 	FMOD::System* m_audio{nullptr};
 	map<string, FMOD::Sound*> m_sounds;
 };

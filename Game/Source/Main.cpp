@@ -19,9 +19,6 @@ int main(int argc, char* argv[])
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>(engine.get());
 	game->Initialize();
 	
-	//std::unique_ptr<TextComponent> text = std::make_unique<TextComponent>(engine.get());
-	//text->Initialize();
-	
 
 #pragma region Json contents
 
@@ -38,7 +35,6 @@ int main(int argc, char* argv[])
 		// update
 		engine->Update();
 		game->Update(engine->GetTime().GetDeltaTime());
-		//text->Update(engine->GetTime().GetDeltaTime());
 
 		// render
 		engine->GetRenderer().SetColor(0, 0, 0, 0);
@@ -47,7 +43,6 @@ int main(int argc, char* argv[])
 		game->Draw(engine->GetRenderer());
 
 		// draw
-		//text->Draw(engine->GetRenderer());
 		
 		// end frame
 		engine->GetRenderer().EndFrame();
