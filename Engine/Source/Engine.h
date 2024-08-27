@@ -37,6 +37,7 @@
 #include "Math/MathUtils.h"
 #include "Math/Vector2.h"
 #include "Math/Random.h"
+#include "Math/Rect.h"
 
 // ** event **
 #include "Event/Event.h"

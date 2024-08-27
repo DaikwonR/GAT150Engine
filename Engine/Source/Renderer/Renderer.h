@@ -5,7 +5,7 @@
 #include <SDL_image.h>
 #include <memory>
 
-#include "Texture.h"
+#include "Math/Vector2.h"
 
 using namespace std;
 
@@ -37,6 +37,7 @@ public:
 
     void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0);
     void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
+    void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, const struct Rect& source, bool hflip = false);
 
 protected:
 

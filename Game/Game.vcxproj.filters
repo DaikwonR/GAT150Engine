@@ -30,6 +30,12 @@
     <ClCompile Include="Source\SpaceGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Components\CharacterComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\SuperComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\PlayerComponent.h">
@@ -41,10 +47,22 @@
     <ClInclude Include="Source\SpaceGame.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\CharacterComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\SuperComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
     <None Include="..\Build\Assets\scenes\scene.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Build\Assets\scenes\tilemap.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Build\Assets\scenes\game.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

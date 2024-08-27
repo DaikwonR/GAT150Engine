@@ -106,7 +106,7 @@
         },
         {
           "type": "AudioComponent",
-          "soundName": "audio/cowbell.wav",
+          "soundName": "audio/lightening.wav",
           "playOnStart": true
         }
 			]

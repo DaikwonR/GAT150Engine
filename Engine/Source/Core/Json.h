@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Math/Vector2.h"
+#include "Math/Rect.h"
 #include "Renderer/Color.h"
 
+#include <vector>
 #include <rapidjson/document.h>
 #include <string>
 
@@ -22,6 +24,9 @@ namespace Json
 	bool Read(const rapidjson::Value& value, const std::string& name, std::string& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, Color& data, bool isRequired = false);
+	bool Read(const rapidjson::Value& value, const std::string& name, Rect& data, bool isRequired = false);
+	bool Read(const rapidjson::Value& value, const std::string& name, std::vector<int>& data, bool isRequired = false);
+	bool Read(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, float& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, bool& data, bool isRequired = false);

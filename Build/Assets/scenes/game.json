@@ -1,0 +1,55 @@
+{
+	"m_actors": [
+		{
+			"name": "background",
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "textures/GNChosen.png"
+				}
+			]
+		},
+		{
+      "name": "player",
+      "tag": "Hero",
+			"transform": {
+				"position": [ 0, 0 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "textures/Warrior.png"
+				},
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.2,
+          "gravityScale": 1,
+          "angularDamping": 0.85,
+          "friction":  0.2,
+          "constrainAngle": true,
+          "size": [ 32, 32 ]
+        },
+				{
+					"type": "CharacterComponent",
+					"speed": 75
+				}
+			]
+		},
+    {
+      "name": "super",
+      "prototype": true,
+      "transform": {
+        "position": [ 560, 360 ],
+        "rotation": 0.0,
+        "scale": 1
+      }
+    }
+	]
+}
