@@ -16,7 +16,11 @@ public:
     int takeDamage(Actor* actor);
 
     float speed{ 0 };
-    bool grounded = false;
+    int groundCount{ 0 };
+
+    class PhysicsComponent* physics{ nullptr };
+    class TextureAnimationComponent* animation{ nullptr };
+
     int health{ 100 };
     int damage{ 10 };
 };

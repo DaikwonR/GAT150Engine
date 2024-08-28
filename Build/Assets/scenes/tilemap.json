@@ -21,7 +21,8 @@
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"isDynamic": false
+          "isDynamic": false,
+          "restitution":  0.0
 				}
 			]
 		},
@@ -46,7 +47,8 @@
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"isDynamic": false
+          "isDynamic": false,
+          "restitution":  0.0
 				}
 			]
 		},

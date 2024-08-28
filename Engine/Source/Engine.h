@@ -52,6 +52,7 @@
 #include "Components/Component.h"
 #include "Components/RenderComponent.h"
 #include "Components/TextureComponent.h"
+#include "Components/TextureAnimationComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"

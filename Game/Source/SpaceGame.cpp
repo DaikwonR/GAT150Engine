@@ -28,6 +28,11 @@ bool SpaceGame::Initialize()
 
 void SpaceGame::Update(float dt)
 {
+
+    // auto bat = Factory::Instance().Create<Actor>("bat");
+    // bat->transform.position = Vector2{ randomf(800), randomf(600) };
+    // m_scene->AddActor(std::move(bat), true);
+
 	m_scene->Update(dt);
 }
 
@@ -41,10 +46,20 @@ void SpaceGame::OnPlayerDead(const Event& event)
 	std::cout << "game player has been VANQUISHED!";
 }
 
+
+
 void SpaceGame::OnAddPoints(const Event& event)
 {
 	m_score += std::get<int>(event.data);
 	std::cout << m_score << std::endl;
+}
+
+void SpaceGame::OnEnemyRespawn(const Event& event)
+{
+
+         auto enemy = Factory::Instance().Create<Actor>("enemy");
+         enemy->transform.position = Vector2{ randomf(800), randomf(600) };
+         m_scene->AddActor(std::move(enemy), true);
 }
 
 bool SpaceGame::Shutdown()
