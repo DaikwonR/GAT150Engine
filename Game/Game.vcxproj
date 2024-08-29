@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Components\CharacterComponent.cpp" />
+    <ClCompile Include="Source\Components\EnemyComponent.cpp" />
     <ClCompile Include="Source\Components\PlayerComponent.cpp" />
     <ClCompile Include="Source\Components\RocketComponent.cpp" />
     <ClCompile Include="Source\Components\SuperComponent.cpp" />
@@ -177,14 +178,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\CharacterComponent.h" />
+    <ClInclude Include="Source\Components\EnemyComponent.h" />
     <ClInclude Include="Source\Components\PlayerComponent.h" />
     <ClInclude Include="Source\Components\RocketComponent.h" />
     <ClInclude Include="Source\Components\SuperComponent.h" />
     <ClInclude Include="Source\SpaceGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Build\Assets\scenes\endGame.json" />
     <None Include="..\Build\Assets\scenes\game.json" />
-    <None Include="..\Build\Assets\scenes\scene.json" />
+    <None Include="..\Build\Assets\scenes\title.json" />
     <None Include="..\Build\Assets\scenes\tilemap.json" />
     <None Include="cpp.hint" />
   </ItemGroup>

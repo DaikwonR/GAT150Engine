@@ -16,9 +16,10 @@ void SuperComponent::Update(float dt)
 
 void SuperComponent::OnCollisionEnter(Actor* actor)
 {
-    if (!actor->destroyed && (actor->name == "enemy"))
+    if (!actor->destroyed && (actor->name == "player"))
     {
         EVENT_NOTIFY_DATA(AddPoints, 200);
+        EVENT_NOTIFY_DATA(AddDamage, 25);
         actor->destroyed = true;
     }
     // std::cout << "Player went bye bye!\n" << endl;

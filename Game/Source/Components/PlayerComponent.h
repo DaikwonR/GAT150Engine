@@ -12,6 +12,8 @@ public:
 	void Update(float dt) override;
 
 	void OnCollisionEnter(Actor* actor);
+	void OnCollisionExit(Actor* actor);
 	
 	float speed{ 0 };
+    Actor* enemy{ nullptr };
 };

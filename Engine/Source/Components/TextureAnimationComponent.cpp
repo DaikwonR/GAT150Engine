@@ -30,6 +30,7 @@ void TextureAnimationComponent::Update(float dt)
 {
 	TextureComponent::Update(dt);
 
+    if (!m_animation) return;
 	// update timer
 	frameTimer -= dt;
 	if (frameTimer <= 0)

@@ -18,13 +18,17 @@ AudioComponent::AudioComponent(const AudioComponent& other)
     loop = other.loop;
     volume = other.volume;
     pitch = other.pitch;
-    // playOnStart = other.playOnStart;
+    playOnStart = other.playOnStart;
 
     if (other.m_audioSource)
     {
         m_audioSource = std::make_unique<AudioSource>(*other.m_audioSource.get());
     }
+}
 
+AudioComponent::~AudioComponent()
+{
+    m_audioSource->Stop();
 }
 
 void AudioComponent::Initialize()
@@ -38,7 +42,7 @@ void AudioComponent::Initialize()
 
 void AudioComponent::Update(float dt)
 {
-    if (!playOnStart)
+    if (playOnStart)
     {
         playOnStart = false;
         Play();
@@ -100,6 +104,7 @@ void AudioComponent::Read(const json_t& value)
     READ_DATA(value, loop);
     READ_DATA(value, volume);
     READ_DATA(value, pitch);
+    READ_DATA(value, playOnStart);
 }
 
 void AudioComponent::Write(json_t& value)

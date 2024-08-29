@@ -9,6 +9,7 @@ class AudioComponent : public Component
 public:
     AudioComponent() = default;
     AudioComponent(const AudioComponent& other);
+    ~AudioComponent();
 
     CLASS_DECLARATION(AudioComponent)
     CLASS_PROTOTYPE(AudioComponent)

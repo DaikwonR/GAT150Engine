@@ -3,6 +3,11 @@
 #include <fmod_errors.h>
 #include <iostream>
 
+AudioSource::~AudioSource()
+{
+    Stop();
+}
+
 bool AudioSource::Play(Audio& audio, bool loop, float volume, float pitch)
 {
     m_audioClip->m_sound->setMode(loop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);

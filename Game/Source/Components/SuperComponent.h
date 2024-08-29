@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.h"
+#include "PlayerComponent.h"
 
 class SuperComponent : public Component
 {
@@ -13,4 +14,5 @@ public:
 
     void OnCollisionEnter(Actor* actor);
 
+    PlayerComponent* playerComponent{ nullptr };
 };

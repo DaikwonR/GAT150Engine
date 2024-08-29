@@ -6,6 +6,7 @@ FACTORY_REGISTER(PlayerComponent)
 void PlayerComponent::Initialize()
 {
 	owner->OnCollisionEnter = std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1);
+	owner->OnCollisionExit = std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1);
 }
 
 void PlayerComponent::Update(float dt)
@@ -36,6 +37,12 @@ void PlayerComponent::OnCollisionEnter(Actor* actor)
 	
 	//EVENT_NOTIFY(PlayerDead);
 	//EVENT_NOTIFY_DATA(AddPoints, 100);
+}
+
+void PlayerComponent::OnCollisionExit(Actor* actor)
+{
+
+
 }
 
 void PlayerComponent::Read(const json_t& value)

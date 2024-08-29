@@ -1,0 +1,52 @@
+{
+	"m_actors": [
+		{
+			"name": "background",
+			"transform": {
+				"position": [ 400, 300 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextureComponent",
+					"textureName": "textures/GNChosen.png"
+				}
+			]
+		},
+		{
+			"name": "text",
+			"transform": {
+				"position": [ 450, 300 ],
+				"rotation": 0,
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "TextComponent",
+					"active": false,
+					"text": "Womp Womp Womp!",
+					"fontName": "fonts/youmurdererbb_reg.ttf",
+					"fontSize": 30,
+					"color": [ 0, 1, 0, 1 ]
+				}
+			]
+		},
+		{
+			"name": "title",
+			"prototype": false,
+			"transform": {
+				"position": [ 560, 360 ],
+				"rotation": 90,
+				"scale": 1
+			},
+			"components": [
+        {
+          "type": "AudioComponent",
+          "soundName": "audio/womp_womp.wav",
+          "playOnStart": true
+        }
+			]
+		}
+	]
+}

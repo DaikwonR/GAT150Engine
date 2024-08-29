@@ -21,6 +21,12 @@ public:
     class PhysicsComponent* physics{ nullptr };
     class TextureAnimationComponent* animation{ nullptr };
 
-    int health{ 100 };
+    int health{ 300 };
     int damage{ 10 };
+    // int killCount{ 0 };
+
+    bool attack{ false };
+    float attackTime{ 0 };
+
+    Actor* enemy{ nullptr };
 };
